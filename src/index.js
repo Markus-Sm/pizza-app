@@ -59,7 +59,7 @@ function App() {
 
 function Header() {
 	return (
-		<header className='header'>
+		<header className='header footer'>
 			<h1>Fast React Pizza Co.</h1>
 		</header>
 	)
@@ -67,9 +67,31 @@ function Header() {
 
 function Menu() {
 	return (
-		<div>
+		<main className='menu'>
 			<h2>Our menu</h2>
-			<Pizza />
+			<Pizza
+				name='Pizza Spinaci'
+				ingredients='Tomato, mozarella, spinach, and ricotta cheese'
+				photoName='pizzas/spinaci.jpg'
+				price={10}
+			/>
+
+			<Pizza name='Pizza Margherita' ingredients='Tomato and mozarella' photoName='pizzas/margherita.jpg' price={10} />
+		</main>
+	)
+}
+
+function Pizza(props) {
+	console.log(props)
+
+	return (
+		<div className='pizza'>
+			<img src={props.photoName} alt={props.name} />
+			<div>
+				<h3>{props.name}</h3>
+				<p>{props.ingredients}</p>
+				<span>{props.price}</span>
+			</div>
 		</div>
 	)
 }
@@ -81,22 +103,12 @@ function Footer() {
 	const isOpen = hour >= openHour && hour <= closeHour
 	console.log(isOpen)
 
-	/// if (isOpen) alert('We are currently open!')
-	/// else {
-	/// 	alert('Sorry we are closed')
-	/// }
+	// if (isOpen) alert('We are currently open!')
+	// else {
+	// 	alert('Sorry we are closed')
+	// }
 
 	return <footer>{new Date().toLocaleTimeString()}. We're currently open</footer>
-}
-
-function Pizza() {
-	return (
-		<div>
-			<img src='pizzas/spinaci.jpg' alt='Pizza spinaci' />
-			<h2>Pizza Spinaci</h2>
-			<p>Tomato, mozarella, ham, aragula, and burrata cheese</p>
-		</div>
-	)
 }
 
 // React v18
